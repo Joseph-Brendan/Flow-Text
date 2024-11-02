@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font: 12px sans-serif;
+      margin: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      margin: 10px 0;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+    }
+    button {
+      width: 100%;
+      padding: 8px 16px;
+      background: #18A0FB;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1089d9;
+    }
+  </style>
+</head>
+<body>
+  <h3>Enter Product Requirements</h3>
+  <p>Enter each requirement on a new line. Each line will become a step in the user flow.</p>
+  <textarea id="requirements" placeholder="Example:
+User lands on homepage
+User clicks sign up button
+User fills registration form
+User confirms email
+User completes onboarding"></textarea>
+  <button id="create">Create User Flow</button>
+  <script>
+    document.getElementById('create').onclick = () => {
+      const requirements = document.getElementById('requirements').value;
+      parent.postMessage({ 
+        pluginMessage: { 
+          type: 'create-flow',
+          requirements 
+        }
+      }, '*');
+    }
+  </script>
+</body>
+</html>
